@@ -1,14 +1,11 @@
-// Biến toàn cục
+import { supabase } from "../js/supabase.js";
+
 let currentUser = null;
 
-// Sử dụng biến supabaseClient từ window
-const { supabaseClient } = window;
-
 // Hàm khởi tạo ứng dụng
-window.initApp = async function(user) {
+async function initApp(user) {
     try {
         currentUser = user;
-        console.log('User:', user);
         
         // Tải danh sách công thức
         await loadFormulas();
@@ -27,7 +24,7 @@ window.initApp = async function(user) {
         console.error('Lỗi khởi tạo ứng dụng:', error);
         showNotification('Có lỗi xảy ra khi khởi tạo ứng dụng', 'error');
     }
-};
+}
 
 // Hàm hiển thị thông báo
 function showNotification(message, type = 'success') {
@@ -45,13 +42,13 @@ function showNotification(message, type = 'success') {
 // Hàm tải danh sách công thức
 async function loadFormulas() {
     try {
-        // Đảm bảo supabaseClient đã được khởi tạo
-        if (!window.supabaseClient) {
+        // Đảm bảo supabase đã được khởi tạo
+        if (!supabase) {
             console.error('Supabase client chưa được khởi tạo');
             return;
         }
 
-        const { data, error } = await window.supabaseClient
+        const { data, error } = await supabase
             .from('formulas')
             .select('*')
             .order('created_at', { ascending: false });
@@ -97,7 +94,7 @@ async function addSampleFormulas() {
             }
         ];
 
-        const { data, error } = await window.supabaseClient
+        const { data, error } = await supabase
             .from('formulas')
                 .insert(sampleFormulas)
                 .select();
@@ -174,7 +171,7 @@ function setupEventListeners() {
             const id = e.target.dataset.id;
             if (confirm('Bạn có chắc chắn muốn xóa công thức này?')) {
                 try {
-                    const { error } = await supabaseClient
+                    const { error } = await supabase
                         .from('formulas')
                         .delete()
                         .eq('id', id)
@@ -208,7 +205,7 @@ async function handleSubmitFormula(e) {
     };
     
     try {
-        const { error } = await supabaseClient
+        const { error } = await supabase
             .from('formulas')
             .upsert([formulaData]);
             
@@ -225,3 +222,14 @@ async function handleSubmitFormula(e) {
 }
 
 // Các hàm khác vẫn giữ nguyên
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error || !user) {
+        window.location.href = '../auth/auth-sign-in.html';
+        return;
+    }
+    currentUser = user;
+    await loadFormulas();
+    setupEventListeners();
+});

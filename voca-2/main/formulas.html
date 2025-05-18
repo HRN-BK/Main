@@ -181,40 +181,7 @@
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     
-    <script>
-        // Khởi tạo Supabase
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                // Khởi tạo Supabase client
-                const SUPABASE_URL = 'https://tkiqqpqplbgrebcbsiop.supabase.co';
-                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRraXFxcHFwbGJncmViY2JzaW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0NzM3MzYsImV4cCI6MjA2MzA0OTczNn0.FJ0C0d4PYJTTUSL55tDroIpz5jcW9gvYX9eSKoB3Iz4';
-                
-                // Tạo client Supabase và gán vào biến toàn cục
-                window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                
-                // Gán vào biến toàn cục để sử dụng trong các file khác
-                window.supabaseClient = window.supabase;
-                
-                // Kiểm tra đăng nhập
-                const { data: { user }, error } = await window.supabase.auth.getUser();
-                if (error || !user) {
-                    window.location.href = '../auth/auth-sign-in.html';
-                    return;
-                }
-                
-                // Gọi hàm khởi tạo ứng dụng sau khi đã xác thực
-                if (window.initApp) {
-                    window.initApp(user);
-                }
-                
-            } catch (error) {
-                console.error('Lỗi khởi tạo:', error);
-                window.location.href = '../auth/auth-sign-in.html';
-            }
-        });
-    </script>
-    
     <!-- Load main application script -->
-    <script src="formulas-new.js"></script>
+    <script type="module" src="formulas.js"></script>
 </body>
 </html>
