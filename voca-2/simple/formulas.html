@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulas</title>
+</head>
+<body>
+  <h1>Formulas</h1>
+  <form id="formula-form">
+    <input id="formula" placeholder="Formula" required>
+    <input id="description" placeholder="Description" required>
+    <button type="submit">Add</button>
+  </form>
+  <ul id="formula-list"></ul>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { addFormula, getFormulas } from '../js/data.js';
+
+    async function load() {
+      try {
+        const data = await getFormulas();
+        const list = document.getElementById('formula-list');
+        list.innerHTML = '';
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `${item.formula}: ${item.description}`;
+          list.appendChild(li);
+        });
+      } catch(err) {
+        console.error(err);
+      }
+    }
+
+    document.getElementById('formula-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const formula = document.getElementById('formula').value.trim();
+      const description = document.getElementById('description').value.trim();
+      if (!formula || !description) return;
+      try {
+        await addFormula(formula, description);
+        e.target.reset();
+        load();
+      } catch(err) {
+        console.error(err);
+      }
+    });
+
+    load();
+  </script>
+</body>
+</html>
