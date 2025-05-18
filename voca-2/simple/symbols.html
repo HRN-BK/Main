@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Symbols</title>
+</head>
+<body>
+  <h1>Symbols</h1>
+  <form id="symbol-form">
+    <input id="symbol" placeholder="Symbol" required>
+    <input id="value" placeholder="Value" required>
+    <button type="submit">Add</button>
+  </form>
+  <ul id="symbol-list"></ul>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { addSymbol, getSymbols } from '../js/data.js';
+
+    async function load() {
+      try {
+        const data = await getSymbols();
+        const list = document.getElementById('symbol-list');
+        list.innerHTML = '';
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `${item.symbol}: ${item.value}`;
+          list.appendChild(li);
+        });
+      } catch(err) {
+        console.error(err);
+      }
+    }
+
+    document.getElementById('symbol-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const symbol = document.getElementById('symbol').value.trim();
+      const value = document.getElementById('value').value.trim();
+      if (!symbol || !value) return;
+      try {
+        await addSymbol(symbol, value);
+        e.target.reset();
+        load();
+      } catch(err) {
+        console.error(err);
+      }
+    });
+
+    load();
+  </script>
+</body>
+</html>
