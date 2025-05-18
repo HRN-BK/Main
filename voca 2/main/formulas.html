@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công thức - Study Notes</title>
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    
+    <!-- Local Stylesheets -->
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="formulas.css">
+    
+    <!-- Scripts -->
+    <!-- Load Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Load KaTeX for math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Load header -->
+    <script src="header.js" defer></script>
+    
+    <!-- Initialize KaTeX -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\(', right: '\\)', display: false},
+                        {left: '\\[', right: '\\]', display: true}
+                    ]
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Header will be loaded here by header.js -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-square-root-alt"></i> Công thức</h1>
+                <p>Tổng hợp các công thức toán học, vật lý, hóa học</p>
+            </div>
+            <div class="formulas-grid">
+                <!-- Formulas will be loaded here by formulas.js -->
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm công thức...">
+                </div>
+                <div class="filter-group">
+                    <select id="subjectFilter" class="dropdown">
+                        <option value="">Tất cả môn học</option>
+                        <option value="toan">Toán học</option>
+                        <option value="ly">Vật lý</option>
+                        <option value="hoa">Hóa học</option>
+                        <option value="sinh">Sinh học</option>
+                    </select>
+                    <button id="addFormulaBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Thêm công thức
+                    </button>
+                </div>
+            </div>
+
+            <!-- Formula List -->
+            <div class="formula-list">
+                <!-- Formula Card 1 -->
+                <div class="formula-card" data-subject="toan">
+                    <div class="formula-content">
+                        <h3>Định lý Pythagoras</h3>
+                        <div class="formula-display">
+                            $$a^2 + b^2 = c^2$$
+                        </div>
+                        <div class="formula-desc">
+                            <p>Trong một tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông.</p>
+                        </div>
+                    </div>
+                    <div class="formula-actions">
+                        <span class="subject-badge math">Toán học</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formula Card 2 -->
+                <div class="formula-card" data-subject="ly">
+                    <div class="formula-content">
+                        <h3>Định luật II Newton</h3>
+                        <div class="formula-display">
+                            $$\vec{F} = m\vec{a}$$
+                        </div>
+                        <div class="formula-desc">
+                            <p>Lực tác dụng lên một vật bằng khối lượng của vật nhân với gia tốc của nó.</p>
+                        </div>
+                    </div>
+                    <div class="formula-actions">
+                        <span class="subject-badge physics">Vật lý</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formula Card 3 -->
+                <div class="formula-card" data-subject="hoa">
+                    <div class="formula-content">
+                        <h3>Phương trình khí lý tưởng</h3>
+                        <div class="formula-display">
+                            $$PV = nRT$$
+                        </div>
+                        <div class="formula-desc">
+                            <p>Phương trình trạng thái khí lý tưởng, với P là áp suất, V là thể tích, n là số mol, R là hằng số khí, T là nhiệt độ tuyệt đối.</p>
+                        </div>
+                    </div>
+                    <div class="formula-actions">
+                        <span class="subject-badge chemistry">Hóa học</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit Formula Modal -->
+            <div id="formulaModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Thêm công thức mới</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formulaForm">
+                            <div class="form-group">
+                                <label for="formulaTitle">Tiêu đề</label>
+                                <input type="text" id="formulaTitle" name="formulaTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="formulaSubject">Môn học</label>
+                                <select id="formulaSubject" name="formulaSubject" required>
+                                    <option value="toan">Toán học</option>
+                
+                <div class="form-group">
+                    <label for="formula-content">Nội dung công thức (hỗ trợ LaTeX) *</label>
+                    <textarea id="formula-content" class="form-control" required></textarea>
+                    <div class="preview-area">
+                        <strong>Xem trước:</strong>
+                        <div id="formula-preview"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="formula-description">Mô tả/Nhận xét</label>
+                    <textarea id="formula-description" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger" id="cancel-formula">Hủy</button>
+                    <button type="submit" class="btn">Lưu Công thức</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Khởi tạo Supabase
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Khởi tạo Supabase client
+                const SUPABASE_URL = 'https://tkiqqpqplbgrebcbsiop.supabase.co';
+                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRraXFxcHFwbGJncmViY2JzaW9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc0NzM3MzYsImV4cCI6MjA2MzA0OTczNn0.FJ0C0d4PYJTTUSL55tDroIpz5jcW9gvYX9eSKoB3Iz4';
+                
+                // Tạo client Supabase và gán vào biến toàn cục
+                window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
+                // Gán vào biến toàn cục để sử dụng trong các file khác
+                window.supabaseClient = window.supabase;
+                
+                // Kiểm tra đăng nhập
+                const { data: { user }, error } = await window.supabase.auth.getUser();
+                if (error || !user) {
+                    window.location.href = '../auth/auth-sign-in.html';
+                    return;
+                }
+                
+                // Gọi hàm khởi tạo ứng dụng sau khi đã xác thực
+                if (window.initApp) {
+                    window.initApp(user);
+                }
+                
+            } catch (error) {
+                console.error('Lỗi khởi tạo:', error);
+                window.location.href = '../auth/auth-sign-in.html';
+            }
+        });
+    </script>
+    
+    <!-- Load main application script -->
+    <script src="formulas-new.js"></script>
+</body>
+</html>

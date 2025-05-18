@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Từ vựng - Study Notes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="vocabulary.css">
+    <script src="header.js" defer></script>
+</head>
+<body>
+    <!-- Header will be loaded here by header.js -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-book"></i> Từ vựng</h1>
+                <p>Xây dựng và củng cố vốn từ vựng của bạn</p>
+            </div>
+            <!-- Filter and Search -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm từ vựng...">
+                </div>
+                <div class="filter-group">
+                    <select id="topicFilter" class="dropdown">
+                        <option value="">Tất cả chủ đề</option>
+                        <option value="toeic">TOEIC</option>
+                        <option value="ielts">IELTS</option>
+                        <option value="toefl">TOEFL</option>
+                        <option value="tienganhchuyennganh">Tiếng Anh chuyên ngành</option>
+                    </select>
+                    <select id="levelFilter" class="dropdown">
+                        <option value="">Tất cả trình độ</option>
+                        <option value="a1">A1 - Sơ cấp</option>
+                        <option value="a2">A2 - Sơ trung cấp</option>
+                        <option value="b1">B1 - Trung cấp</option>
+                        <option value="b2">B2 - Trên trung cấp</option>
+                        <option value="c1">C1 - Cao cấp</option>
+                        <option value="c2">C2 - Thành thạo</option>
+                    </select>
+                    <button id="addWordBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Thêm từ mới
+                    </button>
+                </div>
+            </div>
+
+            <!-- Word List -->
+            <div class="word-list">
+                <!-- Word Card 1 -->
+                <div class="word-card" data-topic="toeic" data-level="b1">
+                    <div class="word-header">
+                        <h3 class="word">Efficient</h3>
+                        <span class="pronunciation">/ɪˈfɪʃ.ənt/</span>
+                    </div>
+                    <div class="word-type">
+                        <span class="part-of-speech">adjective</span>
+                        <span class="level-badge b1">B1</span>
+                    </div>
+                    <div class="word-meaning">
+                        <p>Làm việc hoặc hoạt động một cách tốt nhất với ít thời gian và công sức nhất</p>
+                        <p class="example">Ví dụ: <i>The new software is more efficient than the old one.</i></p>
+                    </div>
+                    <div class="word-footer">
+                        <span class="topic-badge toeic">TOEIC</span>
+                        <div class="word-actions">
+                            <button class="btn-icon" title="Đánh dấu"><i class="far fa-bookmark"></i></button>
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Word Card 2 -->
+                <div class="word-card" data-topic="ielts" data-level="c1">
+                    <div class="word-header">
+                        <h3 class="word">Phenomenon</h3>
+                        <span class="pronunciation">/fəˈnɒm.ɪ.nən/</span>
+                    </div>
+                    <div class="word-type">
+                        <span class="part-of-speech">noun</span>
+                        <span class="level-badge c1">C1</span>
+                    </div>
+                    <div class="word-meaning">
+                        <p>Một sự kiện hoặc tình huống có thể được nhìn thấy xảy ra và thường là điều không bình thường hoặc thú vị</p>
+                        <p class="example">Ví dụ: <i>Hurricanes are a natural phenomenon that can cause widespread damage.</i></p>
+                    </div>
+                    <div class="word-footer">
+                        <span class="topic-badge ielts">IELTS</span>
+                        <div class="word-actions">
+                            <button class="btn-icon" title="Đánh dấu"><i class="far fa-bookmark"></i></button>
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Word Card 3 -->
+                <div class="word-card" data-topic="tienganhchuyennganh" data-level="b2">
+                    <div class="word-header">
+                        <h3 class="word">Algorithm</h3>
+                        <span class="pronunciation">/ˈæl.ɡə.rɪ.ðəm/</span>
+                    </div>
+                    <div class="word-type">
+                        <span class="part-of-speech">noun</span>
+                        <span class="level-badge b2">B2</span>
+                    </div>
+                    <div class="word-meaning">
+                        <p>Một tập hợp các bước toán học hoặc hướng dẫn được sử dụng trong tính toán và giải quyết vấn đề, đặc biệt là bởi máy tính</p>
+                        <p class="example">Ví dụ: <i>Search engines use complex algorithms to rank websites in their results.</i></p>
+                    </div>
+                    <div class="word-footer">
+                        <span class="topic-badge tienganhchuyennganh">Chuyên ngành</span>
+                        <div class="word-actions">
+                            <button class="btn-icon marked" title="Bỏ đánh dấu"><i class="fas fa-bookmark"></i></button>
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit Word Modal -->
+            <div id="wordModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Thêm từ mới</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="wordForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="word">Từ vựng *</label>
+                                    <input type="text" id="word" placeholder="Nhập từ vựng" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pronunciation">Phiên âm</label>
+                                    <input type="text" id="pronunciation" placeholder="Ví dụ: /ɪˈfɪʃ.ənt/">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="partOfSpeech">Từ loại *</label>
+                                    <select id="partOfSpeech" required>
+                                        <option value="">Chọn từ loại</option>
+                                        <option value="noun">Danh từ (noun)</option>
+                                        <option value="verb">Động từ (verb)</option>
+                                        <option value="adjective">Tính từ (adjective)</option>
+                                        <option value="adverb">Trạng từ (adverb)</option>
+                                        <option value="preposition">Giới từ (preposition)</option>
+                                        <option value="conjunction">Liên từ (conjunction)</option>
+                                        <option value="pronoun">Đại từ (pronoun)</option>
+                                        <option value="interjection">Thán từ (interjection)</option>
+                                        <option value="other">Khác</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="level">Trình độ *</label>
+                                    <select id="level" required>
+                                        <option value="">Chọn trình độ</option>
+                                        <option value="a1">A1 - Sơ cấp</option>
+                                        <option value="a2">A2 - Sơ trung cấp</option>
+                                        <option value="b1">B1 - Trung cấp</option>
+                                        <option value="b2">B2 - Trên trung cấp</option>
+                                        <option value="c1">C1 - Cao cấp</option>
+                                        <option value="c2">C2 - Thành thạo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="topic">Chủ đề</label>
+                                <select id="topic">
+                                    <option value="">Chọn chủ đề</option>
+                                    <option value="toeic">TOEIC</option>
+                                    <option value="ielts">IELTS</option>
+                                    <option value="toefl">TOEFL</option>
+                                    <option value="tienganhchuyennganh">Tiếng Anh chuyên ngành</option>
+                                    <option value="khac">Khác</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="meaning">Định nghĩa *</label>
+                                <textarea id="meaning" rows="2" placeholder="Giải thích ý nghĩa của từ" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="example">Ví dụ</label>
+                                <textarea id="example" rows="2" placeholder="Đặt câu ví dụ"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="synonyms">Từ đồng nghĩa</label>
+                                <input type="text" id="synonyms" placeholder="Nhập các từ đồng nghĩa, cách nhau bằng dấu phẩy">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="cancelBtn">Hủy</button>
+                                <button type="submit" class="btn btn-primary">Lưu từ vựng</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Study Notes</span>
+                    <div class="login-register">
+                        <a href="#" id="login">Đăng nhập</a>
+                        <a href="#" id="register">Đăng ký</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tính năng</h4>
+                        <a href="vocabulary.html">Từ vựng</a>
+                        <a href="symbols.html">Ký hiệu</a>
+                        <a href="formulas.html">Công thức</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Hỗ trợ</h4>
+                        <a href="#">Trợ giúp</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Điều khoản</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Study Notes. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mở modal thêm từ mới
+        document.getElementById('addWordBtn').addEventListener('click', function() {
+            document.getElementById('modalTitle').textContent = 'Thêm từ mới';
+            document.getElementById('wordForm').reset();
+            document.getElementById('wordModal').style.display = 'flex';
+        });
+
+        // Đóng modal
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('wordModal').style.display = 'none';
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('wordModal').style.display = 'none';
+        });
+
+        // Toggle đánh dấu từ
+        document.querySelectorAll('.btn-icon[title="Đánh dấu"], .btn-icon[title="Bỏ đánh dấu"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const icon = this.querySelector('i');
+                const isMarked = icon.classList.contains('fa-bookmark');
+                
+                if (isMarked) {
+                    icon.classList.remove('fas', 'fa-bookmark');
+                    icon.classList.add('far', 'fa-bookmark');
+                    this.setAttribute('title', 'Đánh dấu');
+                } else {
+                    icon.classList.remove('far', 'fa-bookmark');
+                    icon.classList.add('fas', 'fa-bookmark');
+                    this.setAttribute('title', 'Bỏ đánh dấu');
+                }
+                
+                // Thêm hiệu ứng
+                this.classList.add('pulse');
+                setTimeout(() => this.classList.remove('pulse'), 300);
+            });
+        });
+
+        // Lọc từ vựng
+        const searchInput = document.getElementById('searchInput');
+        const topicFilter = document.getElementById('topicFilter');
+        const levelFilter = document.getElementById('levelFilter');
+        
+        [searchInput, topicFilter, levelFilter].forEach(element => {
+            element.addEventListener('change', filterWords);
+        });
+
+        function filterWords() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedTopic = topicFilter.value;
+            const selectedLevel = levelFilter.value;
+            
+            document.querySelectorAll('.word-card').forEach(card => {
+                const word = card.querySelector('.word').textContent.toLowerCase();
+                const meaning = card.querySelector('.word-meaning p').textContent.toLowerCase();
+                const example = card.querySelector('.example') ? card.querySelector('.example').textContent.toLowerCase() : '';
+                const topic = card.getAttribute('data-topic');
+                const level = card.getAttribute('data-level');
+                
+                const matchesSearch = word.includes(searchTerm) || 
+                                     meaning.includes(searchTerm) || 
+                                     example.includes(searchTerm);
+                const matchesTopic = !selectedTopic || topic === selectedTopic;
+                const matchesLevel = !selectedLevel || level === selectedLevel;
+                
+                if (matchesSearch && matchesTopic && matchesLevel) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Xử lý form submit
+        document.getElementById('wordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Ở đây sẽ thêm code để lưu từ mới
+            alert('Đã lưu từ vựng thành công!');
+            document.getElementById('wordModal').style.display = 'none';
+        });
+
+        // Đóng modal khi click bên ngoài
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('wordModal')) {
+                document.getElementById('wordModal').style.display = 'none';
+            }
+        });
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

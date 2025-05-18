@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ký hiệu - Study Notes</title>
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    
+    <!-- Local Stylesheets -->
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="symbols.css">
+    
+    <!-- Scripts -->
+    <script src="header.js" defer></script>
+</head>
+<body>
+    <!-- Header will be loaded here by header.js -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-icons"></i> Ký hiệu</h1>
+                <p>Quản lý và tra cứu các ký hiệu toán học, vật lý, hóa học</p>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm ký hiệu...">
+                </div>
+                <div class="filter-group">
+                    <select id="subjectFilter" class="dropdown">
+                        <option value="">Tất cả môn học</option>
+                        <option value="toan">Toán học</option>
+                        <option value="ly">Vật lý</option>
+                        <option value="hoa">Hóa học</option>
+                        <option value="sinh">Sinh học</option>
+                    </select>
+                    <button id="addSymbolBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Thêm ký hiệu
+                    </button>
+                </div>
+            </div>
+
+            <!-- Symbol List -->
+            <div class="symbol-list">
+                <!-- Symbol Card 1 -->
+                <div class="symbol-card" data-subject="toan">
+                    <div class="symbol-display">
+                        <span class="symbol">π</span>
+                    </div>
+                    <div class="symbol-details">
+                        <h3>Pi</h3>
+                        <p class="symbol-meaning">Tỷ số giữa chu vi và đường kính của một đường tròn</p>
+                        <p class="symbol-value">≈ 3.14159</p>
+                    </div>
+                    <div class="symbol-actions">
+                        <span class="subject-badge math">Toán học</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symbol Card 2 -->
+                <div class="symbol-card" data-subject="ly">
+                    <div class="symbol-display">
+                        <span class="symbol">c</span>
+                    </div>
+                    <div class="symbol-details">
+                        <h3>Tốc độ ánh sáng</h3>
+                        <p class="symbol-meaning">Tốc độ lan truyền của ánh sáng trong chân không</p>
+                        <p class="symbol-value">299,792,458 m/s</p>
+                    </div>
+                    <div class="symbol-actions">
+                        <span class="subject-badge physics">Vật lý</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Symbol Card 3 -->
+                <div class="symbol-card" data-subject="hoa">
+                    <div class="symbol-display">
+                        <span class="symbol">N<sub>A</sub></span>
+                    </div>
+                    <div class="symbol-details">
+                        <h3>Số Avogadro</h3>
+                        <p class="symbol-meaning">Số nguyên tử, phân tử trong một mol chất</p>
+                        <p class="symbol-value">6.022 × 10<sup>23</sup> mol<sup>-1</sup></p>
+                    </div>
+                    <div class="symbol-actions">
+                        <span class="subject-badge chemistry">Hóa học</span>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon" title="Xóa"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add/Edit Symbol Modal -->
+            <div id="symbolModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Thêm ký hiệu mới</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="symbolForm">
+                            <div class="form-group">
+                                <label for="symbolName">Tên ký hiệu</label>
+                                <input type="text" id="symbolName" placeholder="Ví dụ: Pi, Tốc độ ánh sáng" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="symbolSubject">Môn học</label>
+                                <select id="symbolSubject" required>
+                                    <option value="toan">Toán học</option>
+                                    <option value="ly">Vật lý</option>
+                                    <option value="hoa">Hóa học</option>
+                                    <option value="sinh">Sinh học</option>
+                                    <option value="khac">Khác</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="symbolChar">Ký hiệu</label>
+                                <input type="text" id="symbolChar" placeholder="Nhập ký hiệu (có thể dùng HTML)" required>
+                                <small class="hint">Ví dụ: π, &alpha;, &beta;, H<sub>2</sub>O</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="symbolValue">Giá trị/Đơn vị</label>
+                                <input type="text" id="symbolValue" placeholder="Ví dụ: 3.14159, 299,792,458 m/s">
+                            </div>
+                            <div class="form-group">
+                                <label for="symbolDesc">Ý nghĩa</label>
+                                <textarea id="symbolDesc" rows="3" placeholder="Mô tả ý nghĩa của ký hiệu" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="cancelBtn">Hủy</button>
+                                <button type="submit" class="btn btn-primary">Lưu ký hiệu</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Study Notes</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tính năng</h4>
+                        <a href="vocabulary.html">Từ vựng</a>
+                        <a href="symbols.html">Ký hiệu</a>
+                        <a href="formulas.html">Công thức</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Hỗ trợ</h4>
+                        <a href="#">Trợ giúp</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Điều khoản</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Study Notes. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mở modal thêm ký hiệu
+        document.getElementById('addSymbolBtn').addEventListener('click', function() {
+            document.getElementById('modalTitle').textContent = 'Thêm ký hiệu mới';
+            document.getElementById('symbolForm').reset();
+            document.getElementById('symbolModal').style.display = 'flex';
+        });
+
+        // Đóng modal
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('symbolModal').style.display = 'none';
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('symbolModal').style.display = 'none';
+        });
+
+        // Lọc ký hiệu
+        document.getElementById('searchInput').addEventListener('input', filterSymbols);
+        document.getElementById('subjectFilter').addEventListener('change', filterSymbols);
+
+        function filterSymbols() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const subjectFilter = document.getElementById('subjectFilter').value;
+            const symbolCards = document.querySelectorAll('.symbol-card');
+
+            symbolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const meaning = card.querySelector('.symbol-meaning').textContent.toLowerCase();
+                const value = card.querySelector('.symbol-value').textContent.toLowerCase();
+                const subject = card.getAttribute('data-subject');
+                
+                const matchesSearch = title.includes(searchTerm) || 
+                                    meaning.includes(searchTerm) || 
+                                    value.includes(searchTerm);
+                const matchesSubject = !subjectFilter || subject === subjectFilter;
+                
+                if (matchesSearch && matchesSubject) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Xử lý form submit
+        document.getElementById('symbolForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Ở đây sẽ thêm code để lưu ký hiệu mới
+            alert('Đã lưu ký hiệu thành công!');
+            document.getElementById('symbolModal').style.display = 'none';
+        });
+
+        // Đóng modal khi click bên ngoài
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('symbolModal')) {
+                document.getElementById('symbolModal').style.display = 'none';
+            }
+        });
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>
