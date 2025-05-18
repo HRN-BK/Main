@@ -1,10 +1,12 @@
 import { signIn } from '../js/auth.js';
+import { supabase } from '../js/supabase.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('signinForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const rememberMe = document.getElementById('remember');
+    const rememberMe = document.getElementById('rememberMe');
+    const googleLoginBtn = document.getElementById('googleLogin');
     const loadingOverlay = document.querySelector('.loading-overlay');
     const errorElement = document.getElementById('error-message');
 
@@ -13,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedEmail) {
         emailInput.value = savedEmail;
         rememberMe.checked = true;
+    }
+
+    // Google OAuth login
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener('click', async () => {
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
+            if (error) {
+                console.error('Google sign-in error:', error);
+            }
+        });
     }
 
     // Form submission
