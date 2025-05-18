@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Đăng nhập vào tài khoản Study Notes của bạn">
+    <title>Đăng nhập - Study Notes</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Ensure the page takes full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="../main/index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1>Study Notes</h1>
+            </div>
+
+            <div class="auth-content">
+                <div class="form-header">
+                    <h2>Đăng nhập</h2>
+                    <p>Điền thông tin để đăng nhập vào tài khoản của bạn</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="error-message"></div>
+
+                <!-- Sign In Form -->
+                <form id="signinForm" class="auth-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" class="form-control" 
+                               placeholder="Nhập địa chỉ email" required
+                               autocomplete="email" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="password-header">
+                            <label for="password">Mật khẩu <span class="required">*</span></label>
+                            <a href="auth-reset-password.html" class="forgot-password">Quên mật khẩu?</a>
+                        </div>
+                        <div class="password-input">
+                            <input type="password" id="password" name="password" class="form-control" 
+                                   placeholder="Nhập mật khẩu" required
+                                   minlength="6" autocomplete="current-password">
+                            <button type="button" class="toggle-password" aria-label="Hiển thị mật khẩu">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group remember-me">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <span class="checkmark"></span>
+                            Ghi nhớ đăng nhập
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span class="btn-text">Đăng nhập</span>
+                            <span class="btn-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="auth-divider">
+                        <span>hoặc</span>
+                    </div>
+
+                    <div class="social-login">
+                        <button type="button" class="btn btn-outline btn-google" id="googleLogin">
+                            <i class="fab fa-google"></i> Đăng nhập với Google
+                        </button>
+                        <button type="button" class="btn btn-outline btn-facebook" id="facebookLogin">
+                            <i class="fab fa-facebook-f"></i> Đăng nhập với Facebook
+                        </button>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Chưa có tài khoản? <a href="auth-sign-up.html">Đăng ký ngay</a></p>
+                    <p class="terms">Bằng việc đăng nhập, bạn đồng ý với <a href="../terms.html" target="_blank">Điều khoản dịch vụ</a> 
+                    và <a href="../privacy.html" target="_blank">Chính sách bảo mật</a> của chúng tôi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Đang xử lý...</p>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script type="module" src="auth-sign-in.js"></script>
+</body>
+</html>

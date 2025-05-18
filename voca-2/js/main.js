@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuthState();
     
     // Set up auth state change listener
-    onAuthStateChange((event, session) => {
-        console.log('Auth state changed:', event, session);
-        checkAuthState();
+    onAuthStateChange((event, session) => {        checkAuthState();
     });
     
     // Initialize other components

@@ -29,7 +29,6 @@ function showSuccess(message) {
             successElement.remove();
         }, 5000);
     } else {
-        console.log('Success:', message);
     }
 }
 
@@ -120,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            console.log('Đang gửi yêu cầu đăng ký...');
             
             // Kiểm tra xem supabase đã được định nghĩa chưa
             if (typeof supabase === 'undefined') {
@@ -144,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw error;
             }
             
-            console.log('Đăng ký thành công:', data);
             
             // Hiển thị thông báo thành công
             showSuccess('Đăng ký thành công! Vui lòng kiểm tra email để xác nhận tài khoản.');

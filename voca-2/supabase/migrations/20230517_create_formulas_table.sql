@@ -1,3 +1,4 @@
+create extension if not exists pgcrypto;
 -- Create a table for storing formulas
 create table if not exists public.formulas (
   id uuid default gen_random_uuid() primary key,
